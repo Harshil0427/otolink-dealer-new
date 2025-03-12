@@ -1,72 +1,12 @@
-// import { Link } from "react-router-dom";
-// import "./Sidebar.css"; 
-
-// const Sidebar = () => {
-//   return (
-//     <div className="sidebar">
-//       <h2>OtoLink</h2>
-//       <ul>
-//         <li><Link to="/shop-now">Shop Now</Link></li>
-//         <li><Link to="/home-service">Home Service</Link></li>
-//         <li><Link to="/vehicle-list">Vehicle List</Link></li>
-//       </ul>
-//     </div>
-//   );
-// };
-
-// export default Sidebar;
-// import { Link } from "react-router-dom";
-// import "./Sidebar.css";
-// import "bootstrap/dist/css/bootstrap.min.css";
-// import "bootstrap-icons/font/bootstrap-icons.css";
-
-// const Sidebar = ({ selectedUser }: { selectedUser: string }) => {
-//   const menuItems = [
-//     { name: "Dashboard", path: "/", icon: "🏠" },
-//     { name: "User Management", path: "/user-management", icon: "👥" },
-//     { name: "Staff", path: "/staff", icon: "👨‍💼" },
-//     { name: "Vehicles", path: "/vehicles", icon: "🚗" },
-//     { name: "Test Drive", path: "/test-drive", icon: "🏁" },
-//     { name: "Shop Now", path: "/shop-now", icon: "🛒" },
-//     { name: "Home Service", path: "/home-service", icon: "🏠" },
-//     { name: "Service", path: "/service", icon: "🔧" },
-//     { name: "Audience", path: "/audience", icon: "📊" },
-//     { name: "Carousel Slider", path: "/carousel-slider", icon: "🎠" },
-//     { name: "Dashboard Images", path: "/dashboard-images", icon: "🖼️" },
-//     { name: "Promo Code", path: "/promo-code", icon: "💳" },
-//   ];
-
-//   // Hide certain menu items based on selected user
-//   const filteredMenu = menuItems.filter((item) => {
-//     if (selectedUser === "Dealer" && item.name === "User Management") return false;
-//     if (selectedUser === "Manager" && item.name === "Promo Code") return false;
-//     return true;
-//   });
-
-//   return (
-//     <div className="sidebar">
-//       <h2>OtoLink</h2>
-//       <ul>
-//         {filteredMenu.map((item) => (
-//           <li key={item.name}>
-//             <Link to={item.path}>
-//               <span>{item.icon}</span> {item.name}
-//             </Link>
-//           </li>
-//         ))}
-//       </ul>
-//     </div>
-//   );
-// };
-
-// export default Sidebar;
-
-
-import React from "react";
+import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 
 const Sidebar: React.FC = () => {
+  const [homeServiceOpen, setHomeServiceOpen] = useState(false);
+  const [shopNowOpen, setShopNowOpen] = useState(false)
+
+
   return (
     <div className="sidebar bg-dark text-white vh-100 p-3">
       <h4 className="mb-4">OtoLink</h4>
@@ -87,14 +27,62 @@ const Sidebar: React.FC = () => {
           </a>
         </li>
         <li className="nav-item">
-          <a href="/Shop-Now" className="nav-link text-white">
-            <i className="bi bi-bag me-2"></i> Shop Now
-          </a>
+        <button
+            className="nav-link text-white w-100 text-start d-flex align-items-center"
+            onClick={() => setShopNowOpen(!shopNowOpen)}
+            style={{ background: "none", border: "none" }}
+          >
+            <i className="bi bi-shop me-2"></i>Shop Now
+            <i className={`bi ms-auto ${shopNowOpen ? "bi-chevron-up" : "bi-chevron-left"}`}></i>
+          </button>
+          {shopNowOpen && (
+            <ul className="nav flex-column ms-3">
+              <li className="nav-item">
+                <a href="/shop-now/products" className="nav-link text-white">
+                  <i className="bi bi-box-seam me-2"></i> Products
+                </a>
+              </li>
+              <li className="nav-item">
+                <a href="/shop-now/orders" className="nav-link text-white">
+                  <i className="bi bi-list-check me-2"></i> Orders
+                </a>
+              </li>
+              <li className="nav-item">
+                <a href="/shop-now/schedule" className="nav-link text-white">
+                  <i className="bi bi-calendar-check me-2"></i> My Schedule
+                </a>
+              </li>
+            </ul>
+          )}
         </li>
         <li className="nav-item">
-          <a href="/service" className="nav-link text-white">
-            <i className="bi bi-tools me-2"></i> Service
-          </a>
+        <button
+            className="nav-link text-white w-100 text-start d-flex align-items-center"
+            onClick={() => setHomeServiceOpen(!homeServiceOpen)}
+            style={{ background: "none", border: "none" }}
+          >
+            <i className="bi bi-house-door me-2"></i> Home Service
+            <i className={`bi ms-auto ${homeServiceOpen ? "bi-chevron-up" : "bi-chevron-down"}`}></i>
+          </button>
+          {homeServiceOpen && (
+            <ul className="nav flex-column ms-3">
+              <li className="nav-item">
+                <a href="/home-service/products" className="nav-link text-white">
+                  <i className="bi bi-box-seam me-2"></i> Products
+                </a>
+              </li>
+              <li className="nav-item">
+                <a href="/home-service/orders" className="nav-link text-white">
+                  <i className="bi bi-list-check me-2"></i> Orders
+                </a>
+              </li>
+              <li className="nav-item">
+                <a href="/home-service/schedule" className="nav-link text-white">
+                  <i className="bi bi-calendar-check me-2"></i> My Schedule
+                </a>
+              </li>
+            </ul>
+          )}
         </li>
         {/* <li className="nav-item">
           <a href="/setting" className="nav-link text-white">
