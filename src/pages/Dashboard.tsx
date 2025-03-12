@@ -1,17 +1,21 @@
-import { useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import Header from "../components/Header";
 import Sidebar from "../components/Sidebar";
+import "bootstrap/dist/css/bootstrap.min.css";
 
-const Dashboard = () => {
-  const navigate = useNavigate();
-
+const Dashboard: React.FC = () => {
   return (
-    <div style={{ display: "flex" }}>
+    <div className="d-flex">
+      {/* Sidebar */}
       <Sidebar />
-      <div style={{ flex: 1, padding: "20px" }}>
-        <h1>Dashboard</h1>
-        <button onClick={() => navigate("/main-dashboard")}>
-          Navigate to Main Dashboard
-        </button>
+
+      {/* Main Content */}
+      <div className="w-100">
+        <Header />
+        <div className="container p-4">
+          <h2 className="mb-4">Dashboard</h2>
+          <button className="btn btn-primary">Go to Dashboard</button>
+        </div>
       </div>
     </div>
   );
