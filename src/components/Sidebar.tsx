@@ -5,6 +5,7 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 const Sidebar: React.FC = () => {
   const [homeServiceOpen, setHomeServiceOpen] = useState(false);
   const [shopNowOpen, setShopNowOpen] = useState(false)
+  const [vehicleOpen, setVehicleOpen] = useState(false)
 
 
   return (
@@ -21,10 +22,39 @@ const Sidebar: React.FC = () => {
             <i className="bi bi-people me-2"></i> User Management
           </a>
         </li> */}
-        <li className="nav-item">
-          <a href="/vehicles" className="nav-link text-white">
-            <i className="bi bi-car-front me-2"></i> Vehicles
-          </a>
+       <li className="nav-item">
+        <button
+            className="nav-link text-white w-100 text-start d-flex align-items-center"
+            onClick={() => setVehicleOpen(!vehicleOpen )}
+            style={{ background: "none", border: "none" }}
+          >
+            <i className="bi bi-shop me-2"></i>Vehicles
+            <i className={`bi ms-auto ${vehicleOpen ? "bi-chevron-up" : "bi-chevron-down"}`}></i>
+          </button>
+          {vehicleOpen && (
+            <ul className="nav flex-column ms-3">
+              <li className="nav-item">
+                <a href="/vehicle/new-vehicles" className="nav-link text-white">
+                  <i className="bi bi-box-seam me-2"></i> New Vehicles
+                </a>
+              </li>
+              <li className="nav-item">
+                <a href="/vehicle/pre-owned" className="nav-link text-white">
+                  <i className="bi bi-list-check me-2"></i> Pre Owned
+                </a>
+              </li>
+              <li className="nav-item">
+                <a href="/vehicle/colors" className="nav-link text-white">
+                  <i className="bi bi-calendar-check me-2"></i> Colors
+                </a>
+              </li>
+              <li className="nav-item">
+                <a href="/vehicle/features" className="nav-link text-white">
+                  <i className="bi bi-list-check me-2"></i> Features
+                </a>
+              </li>
+            </ul>
+          )}
         </li>
         <li className="nav-item">
         <button
@@ -33,7 +63,7 @@ const Sidebar: React.FC = () => {
             style={{ background: "none", border: "none" }}
           >
             <i className="bi bi-shop me-2"></i>Shop Now
-            <i className={`bi ms-auto ${shopNowOpen ? "bi-chevron-up" : "bi-chevron-left"}`}></i>
+            <i className={`bi ms-auto ${shopNowOpen ? "bi-chevron-up" : "bi-chevron-down"}`}></i>
           </button>
           {shopNowOpen && (
             <ul className="nav flex-column ms-3">
