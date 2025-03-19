@@ -34,7 +34,7 @@ const Sidebar: React.FC = () => {
           {vehicleOpen && (
             <ul className="nav flex-column ms-3">
               <li className="nav-item">
-                <a href="/vehicle/new-vehicles" className="nav-link text-white">
+                <a href="/vehicle/new-vehicle" className="nav-link text-white">
                   <i className="bi bi-box-seam me-2"></i> New Vehicles
                 </a>
               </li>

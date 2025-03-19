@@ -1,0 +1,169 @@
+/* General Table Styling */
+table {
+  width: 100%;
+  background-color: white;
+  border-collapse: collapse;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* Table Header */
+thead {
+  background-color: #f3f4f6;
+  color: #4b5563;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+th, td {
+  padding: 12px 16px;
+  text-align: left;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+th.text-center, td.text-center {
+  text-align: center;
+}
+
+/* Table Row Hover */
+tbody tr:hover {
+  background-color: #f9fafb;
+  transition: background 0.3s ease-in-out;
+}
+
+/* Toggle Switch */
+.toggle-switch {
+  position: relative;
+  display: inline-block;
+  width: 42px;
+  height: 22px;
+}
+
+.toggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.toggle-switch .slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #d1d5db;
+  transition: 0.4s;
+  border-radius: 34px;
+}
+
+.toggle-switch input:checked + .slider {
+  background-color: #3b82f6;
+}
+
+.toggle-switch .slider::before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  left: 4px;
+  bottom: 3px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+.toggle-switch input:checked + .slider::before {
+  transform: translateX(20px);
+}
+
+/* Action Buttons */
+.actions-container {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.actions-container button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.actions-container .fa-icon {
+  font-size: 18px;
+}
+
+/* Colors for Icons */
+.edit-icon {
+  color: #3b82f6;
+}
+
+.delete-icon {
+  color: #ef4444;
+}
+
+.save-icon {
+  color: #10b981;
+}
+
+.cancel-icon {
+  color: #6b7280;
+}
+
+/* Search & Filter Controls */
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.controls input,
+.controls select {
+  padding: 8px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.download-btn {
+  background-color: #3b82f6;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+}
+
+.download-btn:hover {
+  background-color: #2563eb;
+}
+
+/* Header Styling */
+.bg-blue-500 {
+  background-color: #3b82f6;
+  color: white;
+  padding: 12px 16px;
+  border-radius: 8px 8px 0 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.bg-blue-500 h2 {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+
+.container-fluids {
+  margin-top: 100px;
+  max-width: 100%;
+  margin-left: 260px;
+  margin-right: 10px;
+}

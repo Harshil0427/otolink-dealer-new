@@ -1,12 +1,12 @@
-import React from 'react';
+import React from "react";
+import Schedule from "./Schedule";
 
-const Schedule = () => {
+const App: React.FC = () => {
   return (
     <div>
-      <h1>My Schedule</h1>
-      {/* Add your schedule content here */}
+      <Schedule />
     </div>
   );
 };
 
-export default Schedule;
+export default App;

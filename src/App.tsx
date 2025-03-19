@@ -5,7 +5,9 @@ import MainDashboard from "./pages/MainDashboard";
 import ProductList from "./components/Product/ProductList";
 import OrderList from "./components/Order/OrderList";
 import ProductShopList from "./components/Product/ProductShopList";
-// import Layout from "./components/Layout";
+import Schedule from "./components/Product/Schedule";
+import Vehicle from "./pages/Vehicle";
+import AddVehicle from "./components/Vehicle/AddVehicle";
 
 function App() {
   return (
@@ -16,10 +18,13 @@ function App() {
         <Route path="/main-dashboard" element={<MainDashboard />} />
         <Route path="/home-service/products" element={<ProductList />} />
         <Route path="/home-service/orders" element={<OrderList />} />
+        <Route path="/home-service/schedule" element={<Schedule />} />    
         <Route path="/shop-now/products" element={<ProductShopList />} />
         <Route path="/shop-now/orders" element={<OrderList />} />
-        {/* // <Route path="/home-service/schedule" element={<Schedule />} /> * */}
-      </Routes>
+        <Route path="/shop-now/schedule" element={<Schedule />} /> 
+        <Route path="/vehicle/new-vehicle" element={<Vehicle />} /> 
+        <Route path="/vehicle/add-vehicle" element={<AddVehicle />}  />
+        </Routes>
     </Router>
   );
 }

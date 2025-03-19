@@ -1,0 +1,26 @@
+/* Schedule.css */
+.schedule-container {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.schedule-section {
+  margin-bottom: 20px;
+}
+
+.schedule-section h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.no-schedule {
+  text-align: center;
+  color: #888;
+  font-size: 16px;
+}

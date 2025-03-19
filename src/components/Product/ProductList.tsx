@@ -7,6 +7,8 @@ import {
   faTrash,
   faFilter,
   faDownload,
+  faSave,
+  faTimes,
 } from "@fortawesome/free-solid-svg-icons";
 import Header from "../Header";
 import AddProductForm from "../Product/AddProductForm"; // Adjust the path if needed
@@ -15,6 +17,9 @@ const ProductList = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [filter, setFilter] = useState("");
   const [showAddProductForm, setShowAddProductForm] = useState(false);
+  const [editingProductId, setEditingProductId] = useState<number | null>(null);
+  const [editableProduct, setEditableProduct] = useState<any>(null);
+
   const [products, setProducts] = useState([
     {
       id: 113,
@@ -42,12 +47,39 @@ const ProductList = () => {
     },
   ]);
 
-  const handleEdit = (item: any) => {
-    console.log("Edit item:", item);
+  const handleEdit = (product: any) => {
+    setEditingProductId(product.id);
+    setEditableProduct({ ...product });
+  };
+
+  const handleCancelEdit = () => {
+    setEditingProductId(null);
+    setEditableProduct(null);
+  };
+
+  const handleSaveEdit = () => {
+    if (!editableProduct) return;
+    setProducts((prevProducts) =>
+      prevProducts.map((product) =>
+        product.id === editableProduct.id ? { ...editableProduct } : product
+      )
+    );
+    setEditingProductId(null);
+    setEditableProduct(null);
+  };
+
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    field: string
+  ) => {
+    if (!editableProduct) return;
+    setEditableProduct({ ...editableProduct, [field]: e.target.value });
   };
 
   const handleDelete = (item: any) => {
-    console.log("Delete item:", item);
+    setProducts((prevProducts) =>
+      prevProducts.filter((product) => product.id !== item.id)
+    );
   };
 
   const handleToggleStatus = (item: any) => {
@@ -58,10 +90,6 @@ const ProductList = () => {
           : product
       )
     );
-  };
-
-  const handleSelectItem = (item: any, isChecked: boolean) => {
-    console.log("Item selected:", item, "Checked:", isChecked);
   };
 
   const handleAddProduct = (newProduct: any) => {
@@ -76,6 +104,7 @@ const ProductList = () => {
       ) && (filter ? item.status === filter : true)
   );
 
+  // Download CSV Functionality
   const downloadCSV = () => {
     const csvRows = [];
     const headers = [
@@ -92,46 +121,53 @@ const ProductList = () => {
     ];
     csvRows.push(headers.join(","));
 
-    filteredData.forEach((row) => {
+    filteredData.forEach((value) => {
       const values = [
-        row.id,
-        row.name,
-        row.price,
-        row.sku,
-        row.scheduled,
-        row.views,
-        row.booked,
-        row.sequence,
-        row.sales,
-        row.status,
+        value.id,
+        value.name,
+        value.price,
+        value.sku,
+        value.scheduled,
+        value.views,
+        value.booked,
+        value.sequence,
+        value.sales,
+        value.status,
       ];
       csvRows.push(values.join(","));
     });
 
-    const csvContent = "data:text/csv;charset=utf-8," + csvRows.join("\n");
-    const encodedUri = encodeURI(csvContent);
-    const link = document.createElement("a");
-    link.setAttribute("href", encodedUri);
-    link.setAttribute("download", "products.csv");
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    const csvData = csvRows.join("\n");
+    const blob = new Blob([csvData], { type: "text/csv" });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "productlist.csv";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
   };
 
   return (
     <>
       <Header />
       <div className="container-fluids">
-        <div className="product-list">
-          <Sidebar />
-          {showAddProductForm && (
-    <div className="modal-overlay">
-      <div className="modal-content">
-        <AddProductForm onAddProduct={handleAddProduct} />
-        <button onClick={() => setShowAddProductForm(false)}>Close</button>
+      <Sidebar />  
+      <div className="flex justify-between items-center bg-blue-500 text-white p-3 rounded-t">
+      <h2>Home Service - Product List</h2>
       </div>
-    </div>
-  )}
+        <div className="product-list">
+          {showAddProductForm && (
+            <div className="modal-overlay">
+              <div className="modal-content">
+                <AddProductForm onAddProduct={handleAddProduct} />
+                <button onClick={() => setShowAddProductForm(false)}>
+                  Close
+                </button>
+              </div>
+            </div>
+          )}
+
           {/* Search, Filter & Add Product */}
           <div className="controls">
             <input
@@ -140,6 +176,7 @@ const ProductList = () => {
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
+
             <div className="filter-dropdown">
               <FontAwesomeIcon icon={faFilter} />
               <select
@@ -151,8 +188,8 @@ const ProductList = () => {
                 <option value="OFF">OFF</option>
               </select>
             </div>
-            <button className="export-btn" onClick={downloadCSV}>
-              <FontAwesomeIcon icon={faDownload} /> Export CSV
+            <button className="download-btn" onClick={downloadCSV}>
+              <FontAwesomeIcon icon={faDownload} /> Download CSV
             </button>
             <button onClick={() => setShowAddProductForm(true)}>
               Add Product & Service
@@ -180,14 +217,94 @@ const ProductList = () => {
               {filteredData.map((item) => (
                 <tr key={item.id}>
                   <td>{item.id}</td>
-                  <td>{item.name}</td>
-                  <td>{item.price}</td>
-                  <td>{item.sku}</td>
-                  <td>{item.scheduled}</td>
-                  <td>{item.views}</td>
-                  <td>{item.booked}</td>
-                  <td>{item.sequence}</td>
-                  <td>{item.sales}</td>
+                  <td>
+                    {editingProductId === item.id ? (
+                      <input
+                        type="text"
+                        value={editableProduct?.name || ""}
+                        onChange={(e) => handleInputChange(e, "name")}
+                      />
+                    ) : (
+                      item.name
+                    )}
+                  </td>
+                  <td>
+                    {editingProductId === item.id ? (
+                      <input
+                        type="text"
+                        value={editableProduct?.price || ""}
+                        onChange={(e) => handleInputChange(e, "price")}
+                      />
+                    ) : (
+                      item.price
+                    )}
+                  </td>
+                  <td>
+                    {editingProductId === item.id ? (
+                      <input
+                        type="text"
+                        value={editableProduct?.sku || ""}
+                        onChange={(e) => handleInputChange(e, "sku")}
+                      />
+                    ) : (
+                      item.sku
+                    )}
+                  </td>
+                  <td>
+                    {editingProductId === item.id ? (
+                      <input
+                        type="text"
+                        value={editableProduct?.scheduled || ""}
+                        onChange={(e) => handleInputChange(e, "scheduled")}
+                      />
+                    ) : (
+                      item.scheduled
+                    )}
+                  </td>
+                  <td>
+                    {editingProductId === item.id ? (
+                      <input
+                        type="number"
+                        value={editableProduct?.views || ""}
+                        onChange={(e) => handleInputChange(e, "views")}
+                      />
+                    ) : (
+                      item.views
+                    )}
+                  </td>
+                  <td>
+                    {editingProductId === item.id ? (
+                      <input
+                        type="number"
+                        value={editableProduct?.booked || ""}
+                        onChange={(e) => handleInputChange(e, "booked")}
+                      />
+                    ) : (
+                      item.booked
+                    )}
+                  </td>
+                  <td>
+                    {editingProductId === item.id ? (
+                      <input
+                        type="number"
+                        value={editableProduct?.sequence || ""}
+                        onChange={(e) => handleInputChange(e, "sequence")}
+                      />
+                    ) : (
+                      item.sequence
+                    )}
+                  </td>
+                  <td>
+                    {editingProductId === item.id ? (
+                      <input
+                        type="number"
+                        value={editableProduct?.sales || ""}
+                        onChange={(e) => handleInputChange(e, "sales")}
+                      />
+                    ) : (
+                      item.sales
+                    )}
+                  </td>
                   <td>
                     <label className="toggle-switch">
                       <input
@@ -200,24 +317,37 @@ const ProductList = () => {
                   </td>
                   <td>
                     <div className="actions-container">
-                      <input
-                        type="checkbox"
-                        onChange={(e) =>
-                          handleSelectItem(item, e.target.checked)
-                        }
-                      />
-                      <button onClick={() => handleEdit(item)}>
-                        <FontAwesomeIcon
-                          icon={faEdit}
-                          className="fa-icon edit-icon"
-                        />
-                      </button>
-                      <button onClick={() => handleDelete(item)}>
-                        <FontAwesomeIcon
-                          icon={faTrash}
-                          className="fa-icon delete-icon"
-                        />
-                      </button>
+                      {editingProductId === item.id ? (
+                        <>
+                          <button onClick={handleSaveEdit}>
+                            <FontAwesomeIcon
+                              icon={faSave}
+                              className="fa-icon save-icon"
+                            />
+                          </button>
+                          <button onClick={handleCancelEdit}>
+                            <FontAwesomeIcon
+                              icon={faTimes}
+                              className="fa-icon cancel-icon"
+                            />
+                          </button>
+                        </>
+                      ) : (
+                        <>
+                          <button onClick={() => handleEdit(item)}>
+                            <FontAwesomeIcon
+                              icon={faEdit}
+                              className="fa-icon edit-icon"
+                            />
+                          </button>
+                          <button onClick={() => handleDelete(item)}>
+                            <FontAwesomeIcon
+                              icon={faTrash}
+                              className="fa-icon delete-icon"
+                            />
+                          </button>
+                        </>
+                      )}
                     </div>
                   </td>
                 </tr>
