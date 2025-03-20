@@ -17,7 +17,7 @@ const Login = () => {
 
   return (
     <div className="login-container">
-      <img src="/logo.png" alt="OtoLink Logo" className="logo" />
+      <img src="/logo512.png" alt="OtoLink Logo" className="logo" />
       <div className="login-box">
         <input
           type="email"

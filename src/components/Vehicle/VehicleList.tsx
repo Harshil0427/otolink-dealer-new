@@ -48,6 +48,7 @@ const VehicleList = () => {
   const navigate = useNavigate();
 
   const handleEdit = (product: any) => {
+    navigate("/vehicle/editVehicle", { state: { product } });
     setEditingVehicleId(product.id);
     setEditableVehicle({ ...product });
   };
@@ -219,6 +220,7 @@ const VehicleList = () => {
                         <FontAwesomeIcon
                           icon={faSave}
                           className="fa-icon save-icon"
+                          onClick={() => handleEdit(vehicle)}
                         />
                       </button>
                       <button onClick={handleCancelEdit}>

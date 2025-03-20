@@ -118,7 +118,7 @@ const AddVehicle = () => {
 
         {/* Buttons */}
         <div className="flex justify-between">
-          <button type="button" className="px-4 py-2 bg-gray-300 rounded" onClick={() => navigate(-1)}>
+          <button type="button" className="px-4 py-2 bg-gray-300 rounded" onClick={() => navigate}>
             Cancel
           </button>
           <button type="submit" className="px-4 py-2 bg-blue-500 text-white rounded">

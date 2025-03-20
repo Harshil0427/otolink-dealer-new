@@ -44,15 +44,15 @@ const Sidebar: React.FC = () => {
                 </a>
               </li>
               <li className="nav-item">
-                <a href="/vehicle/colors" className="nav-link text-white">
+                <a href="/vehicle/colours" className="nav-link text-white">
                   <i className="bi bi-calendar-check me-2"></i> Colors
                 </a>
               </li>
-              <li className="nav-item">
+              {/* <li className="nav-item">
                 <a href="/vehicle/features" className="nav-link text-white">
                   <i className="bi bi-list-check me-2"></i> Features
                 </a>
-              </li>
+              </li> */}
             </ul>
           )}
         </li>

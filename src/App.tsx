@@ -9,6 +9,9 @@ import Schedule from "./components/Product/Schedule";
 import Vehicle from "./pages/Vehicle";
 import AddVehicle from "./components/Vehicle/AddVehicle";
 import ColorList from "./components/Vehicle/ColorsList";
+import AddColors from "./components/Vehicle/AddColor";
+import AddColours from "./components/Vehicle/AddColor";
+import EditVehicle from "./components/Vehicle/EditVehicle";
 
 function App() {
   return (
@@ -25,8 +28,9 @@ function App() {
         <Route path="/shop-now/schedule" element={<Schedule />} /> 
         <Route path="/vehicle/new-vehicle" element={<Vehicle />} /> 
         <Route path="/vehicle/add-vehicle" element={<AddVehicle />}  />
-        <Route path="/vehicle/colors" element={<ColorList />}  />
-        <Route path="/vehicle/add-colors" element={<AddVehicle />}  />
+        <Route path="/vehicle/editVehicle" element={<EditVehicle />} />
+        <Route path="/vehicle/colours" element={<ColorList />}  />
+        <Route path="/colour/add-colour" element={<AddColours />}  />
         </Routes>
     </Router>
   );
