@@ -7,7 +7,7 @@ const Dashboard: React.FC = () => {
   return (
     <div className="d-flex">
       {/* Sidebar */}
-      <Sidebar />
+      {/* <Sidebar /> */}
 
       {/* Main Content */}
       <div className="w-100">

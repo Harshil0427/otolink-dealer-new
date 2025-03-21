@@ -9,7 +9,7 @@ const Schedule: React.FC = () => {
         <Header />
         <div className="container-fluids">
     <div className="schedule-container">
-        <Sidebar />
+        {/* <Sidebar /> */}
       {/* Today's Schedule */}
       <div className="schedule-section">
         <h2>My today's schedule</h2>
