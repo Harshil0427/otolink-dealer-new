@@ -107,11 +107,11 @@ const ProductList = () => {
       <h2>Shop Now - Product List</h2>
       </div>
         <div className="product-list">
-          <Sidebar />
+          {/* <Sidebar /> */}
           {showAddProductForm && (
             <div className="modal-overlay">
               <div className="modal-content">
-                <AddProductForm onAddProduct={handleAddProduct} />
+                {/* <AddProductForm onAddProduct={handleAddProduct} /> */}
                 <button onClick={() => setShowAddProductForm(false)}>Close</button>
               </div>
             </div>

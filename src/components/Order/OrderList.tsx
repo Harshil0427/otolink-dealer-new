@@ -122,7 +122,6 @@ const OrderList = () => {
     <Header />
     <div className="container-fluids">
       <div className="order-list">
-        <Sidebar />
         <h2>OrderList & Service</h2>
         
         <div className="toolbar-container">

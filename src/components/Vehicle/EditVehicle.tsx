@@ -1,8 +1,8 @@
 import {useNavigate, useLocation } from "react-router-dom";
 import { useState } from "react";
 import Header from "../Header";
-import Sidebar from "../Sidebar";
-import { Navigate } from "react-router-dom";
+import Varients from "./Varients";
+
 
 const EditVehicle = () => {
   const location = useLocation();
@@ -15,9 +15,10 @@ const EditVehicle = () => {
   const navigate = useNavigate();
 
   const addVariant = () => {
-    setVariants([...variants, { id: variants.length + 1, name: "", price: "" }]);
+    // setVariants([...variants, { id: variants.length + 1, name: "", price: "" }]);
+    navigate('/home-service/products/add')
   };
-  
+  const [open,setOpen]=useState(false)
 
   return (
     <>
@@ -26,7 +27,7 @@ const EditVehicle = () => {
     <div className="flex justify-between items-center bg-blue-500 text-white p-3 rounded-t">
       <h2>Edit Model</h2>
     </div>
-    <Sidebar />
+    {/* <Sidebar /> */}
 
     <div>
 
@@ -77,7 +78,11 @@ const EditVehicle = () => {
         </tbody>
       </table>
 
-      <button onClick={addVariant}>Add New Variant</button>
+      {/* <button onClick={()=>setOpen(true)}>Add New Variant</button> */}
+      
+      <button onClick={()=>addVariant()}>Add New Variant</button>
+      
+      {open && <Varients/>}
     </div>
     </div>
     </>
