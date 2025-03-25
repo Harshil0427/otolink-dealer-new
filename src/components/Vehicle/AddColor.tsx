@@ -1,7 +1,6 @@
 import React, {useState} from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "../Header";
-import Sidebar from "../Sidebar";
 
 const AddColours = () => {
     const navigate = useNavigate();
@@ -26,7 +25,6 @@ const AddColours = () => {
        <>
        <Header />
        <div className="container-fluids">
-        {/* <Sidebar /> */}
        <div className="p-4 bg-white shadow-lg rounded-md max-w-4xl mx-auto mt-10">
       <div className="flex items-left bg-blue-500 text-white p-3 rounded-t">
 

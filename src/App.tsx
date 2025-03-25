@@ -9,12 +9,12 @@ import Schedule from "./components/Product/Schedule";
 import Vehicle from "./pages/Vehicle";
 import AddVehicle from "./components/Vehicle/AddVehicle";
 import ColorList from "./components/Vehicle/ColorsList";
-import AddColors from "./components/Vehicle/AddColor";
 import AddColours from "./components/Vehicle/AddColor";
 import EditVehicle from "./components/Vehicle/EditVehicle";
 import AddProductForm from "./components/Product/AddProductForm";
 import Sidebar from "./components/Sidebar";
-function Layout() {
+
+function Layout (){
   return (
     <>
       <Sidebar />
@@ -22,24 +22,22 @@ function Layout() {
     </>
   );
 }
-function App() { 
+
+function App() {
   return (
     <Router>
       <Routes>
-      <Route path="/" element={<Login />} />
+        <Route path="/" element={<Login />} />
 
-{/* Routes with Sidebar */}
-<Route element={<Layout />}>
+        <Route element={<Layout />}>
 
-
-        {/* <Route path="/" element={<Login />} /> */}
-        {/* <Sidebar/> */}
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/main-dashboard" element={<MainDashboard />} />
         <Route path="/home-service/products" element={<ProductList />} />
         <Route path="/home-service/products/add" element={<AddProductForm />} />
         <Route path="/home-service/orders" element={<OrderList />} />
-        <Route path="/home-service/schedule" element={<Schedule />} />    
+        <Route path="/home-service/schedule" element={<Schedule />} />
+        <Route path="/home-service/products/add" element={<AddProductForm />} />    
         <Route path="/shop-now/products" element={<ProductShopList />} />
         <Route path="/shop-now/orders" element={<OrderList />} />
         <Route path="/shop-now/schedule" element={<Schedule />} /> 

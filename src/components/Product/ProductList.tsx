@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "./ProductList.css";
-import Sidebar from "../Sidebar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faEdit,
@@ -11,7 +10,7 @@ import {
   faTimes,
 } from "@fortawesome/free-solid-svg-icons";
 import Header from "../Header";
-import AddProductForm from "../Product/AddProductForm"; // Adjust the path if needed
+import AddProductForm from "../Product/AddProductForm"; 
 import { useNavigate } from "react-router-dom";
 
 const ProductList = () => {
@@ -20,7 +19,7 @@ const ProductList = () => {
   const [showAddProductForm, setShowAddProductForm] = useState(false);
   const [editingProductId, setEditingProductId] = useState<number | null>(null);
   const [editableProduct, setEditableProduct] = useState<any>(null);
-const navigate = useNavigate();
+  const navigate = useNavigate();
   const [products, setProducts] = useState([
     {
       id: 113,
@@ -149,16 +148,17 @@ const navigate = useNavigate();
     document.body.removeChild(a);
   };
 
-  const handleNavigateAddPage =()=>{
-    navigate('/home-service/products/add')
+  const handlenavigateAddPage = () => {
+    navigate('/home-service/product/add');
   }
-  const handleEditHomeService = (item:any) =>{
-    navigate('/home-service/products/add',{
-      state:{
-        id:item
-      }
-    })
+
+  const handleEditHomeService = (item:any) => {
+    navigate('/home-service/products/add', { state: {
+      id: item,
+    }
+  });
   }
+
   return (
     <>
       <Header />
@@ -202,7 +202,7 @@ const navigate = useNavigate();
             <button className="download-btn" onClick={downloadCSV}>
               <FontAwesomeIcon icon={faDownload} /> Download CSV
             </button>
-            <button onClick={handleNavigateAddPage}>
+            <button onClick={handlenavigateAddPage}>
               Add Product & Service
             </button>
           </div>
@@ -345,7 +345,7 @@ const navigate = useNavigate();
                         </>
                       ) : (
                         <>
-                          <button onClick={()=>handleEditHomeService(item)}>
+                          <button onClick={() => handleEditHomeService(item)}>
                             <FontAwesomeIcon
                               icon={faEdit}
                               className="fa-icon edit-icon"

@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "./OrderList.css";
-import Sidebar from "../Sidebar";
 import { Modal, Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faDownload, faSearch } from "@fortawesome/free-solid-svg-icons";

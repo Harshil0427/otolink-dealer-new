@@ -1,8 +1,7 @@
 import {useNavigate, useLocation } from "react-router-dom";
 import { useState } from "react";
 import Header from "../Header";
-import Varients from "./Varients";
-
+import Varients from './Varients'
 
 const EditVehicle = () => {
   const location = useLocation();
@@ -12,13 +11,14 @@ const EditVehicle = () => {
   const [model, setModel] = useState(vehicle.model || "");
   const [price, setPrice] = useState(vehicle.price || "");
   const [variants, setVariants] = useState(vehicle.variants || []);
+  const [open,setOpen] = useState(false);
   const navigate = useNavigate();
 
   const addVariant = () => {
-    // setVariants([...variants, { id: variants.length + 1, name: "", price: "" }]);
     navigate('/home-service/products/add')
   };
-  const [open,setOpen]=useState(false)
+
+  
 
   return (
     <>
@@ -78,11 +78,8 @@ const EditVehicle = () => {
         </tbody>
       </table>
 
-      {/* <button onClick={()=>setOpen(true)}>Add New Variant</button> */}
-      
-      <button onClick={()=>addVariant()}>Add New Variant</button>
-      
-      {open && <Varients/>}
+      <button onClick={addVariant}>Add New Variant</button>
+      {open && <Varients />}
     </div>
     </div>
     </>
