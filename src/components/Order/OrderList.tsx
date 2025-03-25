@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "./OrderList.css";
-import Sidebar from "../Sidebar";
 import { Modal, Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faDownload, faSearch } from "@fortawesome/free-solid-svg-icons";
@@ -122,7 +121,6 @@ const OrderList = () => {
     <Header />
     <div className="container-fluids">
       <div className="order-list">
-        <Sidebar />
         <h2>OrderList & Service</h2>
         
         <div className="toolbar-container">

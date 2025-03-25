@@ -1,7 +1,6 @@
 import React from "react";
-import "./Schedule.css"; // Optional: For styling
+import "./Schedule.css";
 import Header from "../Header";
-import Sidebar from "../Sidebar";
 
 const Schedule: React.FC = () => {
   return (
@@ -9,7 +8,6 @@ const Schedule: React.FC = () => {
         <Header />
         <div className="container-fluids">
     <div className="schedule-container">
-        <Sidebar />
       {/* Today's Schedule */}
       <div className="schedule-section">
         <h2>My today's schedule</h2>

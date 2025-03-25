@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "./ProductList.css";
-import Sidebar from "../Sidebar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faEdit,
@@ -11,7 +10,8 @@ import {
   faTimes,
 } from "@fortawesome/free-solid-svg-icons";
 import Header from "../Header";
-import AddProductForm from "../Product/AddProductForm"; // Adjust the path if needed
+import AddProductForm from "../Product/AddProductForm"; 
+import { useNavigate } from "react-router-dom";
 
 const ProductList = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -19,7 +19,7 @@ const ProductList = () => {
   const [showAddProductForm, setShowAddProductForm] = useState(false);
   const [editingProductId, setEditingProductId] = useState<number | null>(null);
   const [editableProduct, setEditableProduct] = useState<any>(null);
-
+  const navigate = useNavigate();
   const [products, setProducts] = useState([
     {
       id: 113,
@@ -148,11 +148,22 @@ const ProductList = () => {
     document.body.removeChild(a);
   };
 
+  const handlenavigateAddPage = () => {
+    navigate('/home-service/product/add');
+  }
+
+  const handleEditHomeService = (item:any) => {
+    navigate('/home-service/products/add', { state: {
+      id: item,
+    }
+  });
+  }
+
   return (
     <>
       <Header />
       <div className="container-fluids">
-      <Sidebar />  
+      {/* <Sidebar />   */}
       <div className="flex justify-between items-center bg-blue-500 text-white p-3 rounded-t">
       <h2>Home Service - Product List</h2>
       </div>
@@ -160,7 +171,7 @@ const ProductList = () => {
           {showAddProductForm && (
             <div className="modal-overlay">
               <div className="modal-content">
-                <AddProductForm onAddProduct={handleAddProduct} />
+                {/* <AddProductForm onAddProduct={handleAddProduct} /> */}
                 <button onClick={() => setShowAddProductForm(false)}>
                   Close
                 </button>
@@ -191,7 +202,7 @@ const ProductList = () => {
             <button className="download-btn" onClick={downloadCSV}>
               <FontAwesomeIcon icon={faDownload} /> Download CSV
             </button>
-            <button onClick={() => setShowAddProductForm(true)}>
+            <button onClick={handlenavigateAddPage}>
               Add Product & Service
             </button>
           </div>
@@ -334,7 +345,7 @@ const ProductList = () => {
                         </>
                       ) : (
                         <>
-                          <button onClick={() => handleEdit(item)}>
+                          <button onClick={() => handleEditHomeService(item)}>
                             <FontAwesomeIcon
                               icon={faEdit}
                               className="fa-icon edit-icon"

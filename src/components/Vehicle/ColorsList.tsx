@@ -80,7 +80,7 @@ const ColorList = () => {
       <Header />
       <div className="container-fluids">
         <div className="flex justify-between items-center bg-blue-500 text-white p-3 rounded-t">
-          <Sidebar />
+          {/* <Sidebar /> */}
           <h2>Colors</h2>
         </div>
         <div className="container mx-auto p-4">

@@ -11,7 +11,6 @@ import {
   faTimes,
 } from "@fortawesome/free-solid-svg-icons";
 import Header from "../Header";
-import Sidebar from "../Sidebar";
 
 const VehicleList = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -133,7 +132,6 @@ const VehicleList = () => {
       <Header />
       <div className="container-fluids">
       <div className="flex justify-between items-center bg-blue-500 text-white p-3 rounded-t">
-        <Sidebar />
         <h2>New Models</h2>
       </div>
 

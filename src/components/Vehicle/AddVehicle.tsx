@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import Header from "../Header";
-import Sidebar from "../Sidebar";
 import './AddVehicle.css';
 
 interface VehicleFormData {
@@ -37,7 +36,6 @@ const AddVehicle = () => {
     <Header />
     <div className="container-fluids">
     <div className="flex justify-between items-center bg-blue-500 text-white p-3 rounded-t">
-        <Sidebar />
         <h2>Add New Vehicle</h2>
       </div>
     <div className="p-4 border rounded-lg shadow-lg bg-white max-w-lg">
@@ -117,15 +115,16 @@ const AddVehicle = () => {
     </div>
 
         {/* Buttons */}
-        <div className="flex justify-between">
-          <button type="button" className="px-4 py-2 bg-gray-300 rounded" onClick={() => navigate}>
+        </form>
+        <div className="d-flex gap-2 flex-col" style={{width: "20%"}}>
+          <button type="button" className="px-4 py-2 bg-gray-300 rounded w-20" onClick={() => navigate}>
             Cancel
           </button>
           <button type="submit" className="px-4 py-2 bg-blue-500 text-white rounded">
             Add
           </button>
         </div>
-      </form>
+      
     </div>
     </div>
     </>
