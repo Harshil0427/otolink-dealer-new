@@ -46,7 +46,10 @@ const AddProductForm = () => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value, type } = e.target;
     if (type === "checkbox") {
-      setProduct((prev) => ({ ...prev, [name]: (e.target as HTMLInputElement).checked }));
+      setProduct((prev) => ({
+        ...prev,
+        [name]: (e.target as HTMLInputElement).checked,
+      }));
     } else if (type === "number") {
       setProduct((prev) => ({ ...prev, [name]: parseFloat(value) || 0 }));
     } else {

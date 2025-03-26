@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Outlet } from "react-router-dom";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import MainDashboard from "./pages/MainDashboard";
@@ -13,7 +13,6 @@ import AddColours from "./components/Vehicle/AddColor";
 import EditVehicle from "./components/Vehicle/EditVehicle";
 import AddProductForm from "./components/Product/AddProductForm";
 import Sidebar from "./components/Sidebar";
-import { Outlet } from "react-router-dom";
 
 function Layout (){
   return (
@@ -35,6 +34,7 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/main-dashboard" element={<MainDashboard />} />
         <Route path="/home-service/products" element={<ProductList />} />
+        <Route path="/home-service/products/add" element={<AddProductForm />} />
         <Route path="/home-service/orders" element={<OrderList />} />
         <Route path="/home-service/schedule" element={<Schedule />} />
         <Route path="/home-service/products/add" element={<AddProductForm />} />    
