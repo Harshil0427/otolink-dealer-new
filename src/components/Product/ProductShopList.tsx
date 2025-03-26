@@ -11,7 +11,7 @@ import {
   faTimes,
 } from "@fortawesome/free-solid-svg-icons";
 import Header from "../Header";
-import AddProductForm from "../Product/AddProductForm"; // Adjust the path if needed
+import AddProductForm from "../Product/AddProductForm"; 
 
 const ProductList = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -117,7 +117,6 @@ const ProductList = () => {
             </div>
           )}
 
-          {/* Search, Filter & Add Product */}
           <div className="controls">
             <input
               type="text"

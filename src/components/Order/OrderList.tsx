@@ -70,7 +70,6 @@ const OrderList = () => {
     );
   });
 
-  // Download CSV Functionality
   const downloadCSV = () => {
     const csvRows = [];
     const headers = [
@@ -205,7 +204,6 @@ const OrderList = () => {
         </table>
       </div>
 
-      {/* Modal Implementation */}
       {selectedOrder && (
         <Modal show={modalShow} onHide={() => setModalShow(false)}>
           <Modal.Header closeButton>

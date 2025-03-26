@@ -207,7 +207,6 @@ const OrderShopList = () => {
         </table>
       </div>
 
-      {/* Modal Implementation */}
       {selectedOrder && (
         <Modal show={modalShow} onHide={() => setModalShow(false)}>
           <Modal.Header closeButton>
